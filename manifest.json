@@ -1,25 +1,24 @@
 {
-    "name": "RuliCuts",
+    "name": "ChromeHots",
     "version": "0.0.1",
-    "description": "루리웹 수동 차단 플러그인",
+    "description": "bookmark access through keyboard hot-keys.",
     "manifest_version": 3,
     "icons": {
         "16": "/assets/icon-16.png",
         "32": "/assets/icon-32.png",
         "128": "/assets/icon-128.png"
-    },
-    "permissions": ["storage", "scripting"],
+    }
+    ,
+    "permissions": ["activeTab", "scripting", "bookmarks"],
     "content_scripts": [
         {
-          "matches": [ "*://*.ruliweb.com/*" ],
-          "run_at": "document_end",
+          "matches": [ "<all_urls>" ],
           "js": [ 
-            "start.js"
+            "background.js"
            ]
         }
     ],
-    "web_accessible_resources": [{
-        "resources": ["do_block.js"],
-        "matches": [ "*://*.ruliweb.com/*" ]
-    }]
+    "background": {
+        "service_worker": "pg.js"
+    }
 }
